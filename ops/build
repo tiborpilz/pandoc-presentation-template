@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+echo "Building..."
+
+rm -r dist/*
+
+mkdir -p dist/
+cp -r css dist/css
+cp -r images dist/images
+
+pandoc presentation/**.md\
+  -o dist/index.html\
+  -t revealjs\
+  -s\
+  --template template/index.html\
+  -V highlightjs\
+  -V highlightjs-theme:zenburn\
+  -V transition=fade\
+  -V center=false\
+  -V width=1280\
+  -L revealjs-codeblock.lua\
+  -i\
+  --css css/avenga.css
